@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abdul Kareem | Technical Process Specialist</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    section {
+      margin-bottom: 30px;
+    }
+    ul {
+      padding-left: 20px;
+    }
+    a {
+      color: #0073e6;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Abdul Kareem</h1>
+  <p><strong>Technical Process Specialist | Application Support | IAM</strong></p>
+  <p>Bengaluru, India | <a href="mailto:aftabsayed49@gmail.com">aftabsayed49@gmail.com</a></p>
+
+  <section>
+    <h2>About Me</h2>
+    <p>
+      Technical Process Specialist with 3+ years of experience in application support,
+      identity and access management, and production troubleshooting. Skilled in
+      supporting SaaS applications, SSO integrations, API troubleshooting, and
+      log analysis using Splunk and Linux.
+    </p>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <ul>
+      <li>Application Support (Production)</li>
+      <li>IAM: Okta, Azure AD, Active Directory</li>
+      <li>SSO: SAML, OAuth, SCIM</li>
+      <li>REST APIs, Postman, JSON</li>
+      <li>Log Analysis: Splunk, Linux (grep, tail, journalctl)</li>
+      <li>SQL (Data Validation)</li>
+      <li>JML, RBAC, Least Privilege</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Experience Snapshot</h2>
+    <ul>
+      <li><strong>Infosys</strong> – Technical Process Specialist</li>
+      <li><strong>Concentrix</strong> – Senior Operations Representative</li>
+      <li><strong>Cognizant</strong> – Senior Process Associate</li>
+      <li><strong>Amazon</strong> – SDS Associate</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Projects & Labs</h2>
+    <ul>
+      <li>SaaS application onboarding with SSO integration</li>
+      <li>SCIM-based user provisioning and deprovisioning</li>
+      <li>API troubleshooting using OAuth tokens and Postman</li>
+      <li>Log analysis and RCA using Splunk and Linux</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Resume</h2>
+    <p>
+      <a href="#">Download Resume (PDF)</a>
+    </p>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p>
+      Email: <a href="mailto:aftabsayed49@gmail.com">aftabsayed49@gmail.com</a><br>
+      GitHub: <a href="https://github.com/affy26">github.com/affy26</a>
+    </p>
+  </section>
+
+</body>
+</html>

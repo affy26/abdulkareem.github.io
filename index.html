@@ -1,119 +1,391 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Abdul Kareem | IAM & Application Support</title>
+  <meta name="description" content="Abdul Kareem - IAM & Application Support Engineer (Okta, Entra ID, AD, SAML, OAuth, SCIM). Production troubleshooting, Splunk, Linux, APIs." />
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      margin: 0;
-      padding: 0;
+    :root{
+      --bg1:#0b1220;
+      --bg2:#0f2a3a;
+      --card: rgba(255,255,255,.08);
+      --card2: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --line: rgba(255,255,255,.14);
+      --brand:#6ee7ff;
+      --brand2:#a78bfa;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius: 18px;
     }
-    .container {
-      max-width: 900px;
-      margin: auto;
-      background: #ffffff;
-      padding: 30px;
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(110,231,255,.22), transparent 55%),
+        radial-gradient(900px 600px at 85% 20%, rgba(167,139,250,.22), transparent 55%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      min-height:100vh;
     }
-    h1 {
-      color: #2c3e50;
+
+    a{color:inherit; text-decoration:none}
+    .wrap{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 22px 16px 60px;
     }
-    h2 {
-      color: #34495e;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 5px;
+
+    /* Top Nav */
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding: 10px 12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(10px);
+      border-radius: 999px;
+      box-shadow: var(--shadow);
     }
-    p, li {
-      color: #333;
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:700;
+      letter-spacing:.3px;
+      padding-left:6px;
+    }
+    .dot{
+      width:11px; height:11px; border-radius:50%;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 0 0 4px rgba(255,255,255,.08);
+    }
+    .navlinks{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+      padding-right:6px;
+    }
+    .chip{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      padding: 8px 12px;
+      border-radius:999px;
+      font-size: 13px;
+      color: var(--muted);
+      transition: transform .15s ease, background .15s ease;
+    }
+    .chip:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); color: var(--text); }
+
+    /* Hero */
+    .hero{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 16px;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      backdrop-filter: blur(12px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .title{
+      font-size: 38px;
+      line-height:1.1;
+      margin: 0 0 10px;
+      letter-spacing:.2px;
+    }
+    .subtitle{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 15.5px;
       line-height: 1.6;
     }
-    a {
-      color: #0066cc;
-      text-decoration: none;
+    .badges{
+      display:flex; flex-wrap:wrap; gap:10px; margin-top: 10px;
     }
-    .btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 15px;
-      background: #0066cc;
-      color: white;
-      border-radius: 5px;
+    .badge{
+      font-size:13px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.80);
+    }
+
+    .actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top: 16px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 11px 14px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      font-weight: 600;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.12); }
+    .btn.primary{
+      border:none;
+      background: linear-gradient(135deg, rgba(110,231,255,.95), rgba(167,139,250,.95));
+      color: #0b1220;
+    }
+    .btn.primary:hover{ filter: brightness(1.02); }
+
+    /* Side card */
+    .cardTitle{ margin: 0 0 10px; font-size: 15px; color: rgba(255,255,255,.85); }
+    .meta{
+      display:grid;
+      gap:10px;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .row{
+      display:flex; align-items:flex-start; gap:10px;
+      padding: 10px 12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      border-radius: 14px;
+    }
+    .ico{ width:18px; opacity:.9; margin-top:1px; }
+
+    /* Sections */
+    .grid{
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr}
+    }
+    h2{
+      margin: 0 0 12px;
+      font-size: 16px;
+      letter-spacing:.2px;
+    }
+    .list{
+      margin:0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height:1.7;
+      font-size: 14.5px;
+    }
+
+    .timeline{
+      display:grid;
+      gap:12px;
+    }
+    .job{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+      border-radius: 16px;
+      padding: 14px 14px;
+    }
+    .jobTop{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:baseline;
+      margin-bottom:8px;
+    }
+    .jobTitle{ font-weight:700; }
+    .jobWhen{ color: rgba(255,255,255,.60); font-size: 13px; }
+    .jobOrg{ color: rgba(255,255,255,.80); font-size: 13.5px; margin-bottom: 8px; }
+
+    /* Footer */
+    .footer{
+      margin-top: 22px;
+      text-align:center;
+      color: rgba(255,255,255,.55);
+      font-size: 13px;
+      padding: 14px 0 0;
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
+  <div class="wrap">
+    <!-- NAV -->
+    <div class="nav">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>Abdul Kareem</span>
+      </div>
+      <div class="navlinks">
+        <a class="chip" href="#skills">Skills</a>
+        <a class="chip" href="#experience">Experience</a>
+        <a class="chip" href="#contact">Contact</a>
+      </div>
+    </div>
 
-    <h1>Abdul Kareem</h1>
-    <p><strong>IAM & Application Support Engineer</strong></p>
-    <p>Bengaluru, India</p>
+    <!-- HERO -->
+    <div class="hero">
+      <div class="panel">
+        <h1 class="title">IAM & Application Support Engineer</h1>
+        <p class="subtitle">
+          I support enterprise applications in production environments and solve authentication,
+          authorization, API, and infrastructure issues using structured troubleshooting and RCA.
+          Hands-on with <b>Okta</b>, <b>Entra ID</b>, <b>Active Directory</b>, <b>SAML</b>, <b>OAuth</b>, <b>SCIM</b>,
+          <b>Splunk</b>, <b>Linux</b>, and <b>REST APIs</b>.
+        </p>
 
-    <a class="btn" href="Abdul_Kareem_Resume.pdf" target="_blank">📄 Download Resume</a>
-    <br><br>
+        <div class="badges">
+          <span class="badge">Okta • Entra ID • AD</span>
+          <span class="badge">SAML • OAuth 2.0 • SCIM</span>
+          <span class="badge">Splunk • Linux • Postman</span>
+          <span class="badge">Production Support • RCA</span>
+        </div>
 
-    <h2>Profile</h2>
-<p>
-IAM & Application Support Engineer with 3+ years of experience supporting
-enterprise applications in production environments. Hands-on experience
-with Okta, Entra ID (Azure AD), Active Directory, SSO protocols (SAML, OAuth,
-SCIM), and JML lifecycle management. Strong in troubleshooting API,
-authentication, authorization, server, and network issues using logs,
-monitoring tools, and structured RCA.
-</p>
+        <div class="actions">
+          <a class="btn primary" href="Abdul_Kareem_Resume.pdf" target="_blank" rel="noopener">
+            📄 Download Resume
+          </a>
+          <a class="btn" href="https://github.com/affy26" target="_blank" rel="noopener">
+            💻 GitHub
+          </a>
+          <a class="btn" href="https://www.linkedin.com/in/abdul-kareem-664ba917a" target="_blank" rel="noopener">
+            🔗 LinkedIn
+          </a>
+        </div>
+      </div>
 
-<h2>Key Skills</h2>
-<ul>
-  <li>IAM: Okta, Entra ID (Azure AD), Active Directory</li>
-  <li>SSO: SAML, OAuth 2.0, SCIM</li>
-  <li>Application & Production Support (L2/L3)</li>
-  <li>API Troubleshooting: REST, JSON, Postman</li>
-  <li>Logs & Monitoring: Splunk, Linux</li>
-  <li>Linux, Windows Server, SQL</li>
-  <li>Docker & Kubernetes (basic)</li>
-</ul>
+      <div class="panel">
+        <p class="cardTitle"><b>Quick Info</b></p>
+        <div class="meta">
+          <div class="row">
+            <span class="ico">📍</span>
+            <div>
+              <div><b>Location</b></div>
+              <div>Bengaluru, India</div>
+            </div>
+          </div>
+          <div class="row">
+            <span class="ico">🎯</span>
+            <div>
+              <div><b>Target Roles</b></div>
+              <div>IAM Support • App Support • Support Engineer</div>
+            </div>
+          </div>
+          <div class="row">
+            <span class="ico">✅</span>
+            <div>
+              <div><b>Focus</b></div>
+              <div>SSO Issues • Provisioning • API Errors • Log Analysis</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <!-- SECTIONS -->
+    <div class="grid">
+      <div class="panel" id="skills">
+        <h2>Core Skills</h2>
+        <ul class="list">
+          <li><b>IAM:</b> Okta, Entra ID (Azure AD), Active Directory, RBAC, least privilege</li>
+          <li><b>SSO:</b> SAML, OAuth 2.0, SCIM, token validation, scopes/permissions</li>
+          <li><b>Troubleshooting:</b> login failures, permission conflicts, latency, connectivity, server health</li>
+          <li><b>Tools:</b> Splunk, Postman, ServiceNow/Jira basics, Linux commands</li>
+          <li><b>Systems:</b> Linux (RHEL), Windows Server, SQL</li>
+          <li><b>Basics:</b> Docker & Kubernetes fundamentals</li>
+        </ul>
+      </div>
 
-<h2>Experience</h2>
+      <div class="panel" id="experience">
+        <h2>Experience</h2>
+        <div class="timeline">
+          <div class="job">
+            <div class="jobTop">
+              <div class="jobTitle">Infosys — Technical Process Specialist</div>
+              <div class="jobWhen">Oct 2024 – Jan 2026</div>
+            </div>
+            <div class="jobOrg">Production Support • IAM • SSO</div>
+            <ul class="list">
+              <li>Resolved JML access issues, login failures, permission conflicts, and SSO errors.</li>
+              <li>Troubleshot API auth flows (tokens/scopes) and analyzed responses for failures/timeouts.</li>
+              <li>Used Splunk + Linux to analyze logs and perform RCA on production incidents.</li>
+            </ul>
+          </div>
 
-<p><strong>Infosys</strong> – Technical Process Specialist (Oct 2024 – Jan 2026)</p>
-<ul>
-  <li>Provided L2/L3 production support for enterprise applications</li>
-  <li>Troubleshot SSO failures, permission conflicts, and JML access issues</li>
-  <li>Worked with Okta, Azure AD, and Active Directory for access provisioning</li>
-  <li>Debugged REST APIs including authentication, tokens, scopes, and payload errors</li>
-  <li>Analyzed logs using Splunk and Linux commands for RCA</li>
-</ul>
+          <div class="job">
+            <div class="jobTop">
+              <div class="jobTitle">Concentrix — Senior Operations Representative</div>
+              <div class="jobWhen">Mar 2024 – Oct 2024</div>
+            </div>
+            <div class="jobOrg">Operations • Monitoring • APIs</div>
+            <ul class="list">
+              <li>Monitored performance, analyzed issues, and applied fixes for operational stability.</li>
+              <li>Used Postman to diagnose failed API requests and integration problems.</li>
+            </ul>
+          </div>
 
-<p><strong>Concentrix</strong> – Senior Operations Representative (Mar 2024 – Oct 2024)</p>
-<ul>
-  <li>Monitored application and database performance</li>
-  <li>Used Postman to diagnose failed API requests</li>
-  <li>Resolved network and connectivity issues</li>
-</ul>
+          <div class="job">
+            <div class="jobTop">
+              <div class="jobTitle">Cognizant — Senior Process Associate</div>
+              <div class="jobWhen">Aug 2023 – Feb 2024</div>
+            </div>
+            <div class="jobOrg">Provisioning • Access Reviews • SSO</div>
+            <ul class="list">
+              <li>Handled account provisioning in AD, Entra ID, and Okta; supported SaaS onboarding + SSO.</li>
+              <li>Maintained security through access reviews and IAM best practices.</li>
+            </ul>
+          </div>
 
-<p><strong>Cognizant</strong> – Senior Process Associate (Aug 2023 – Feb 2024)</p>
-<ul>
-  <li>Handled user provisioning in AD, Azure AD, and Okta</li>
-  <li>Automated IAM lifecycle tasks and access reviews</li>
-  <li>Supported SaaS onboarding and SSO integrations</li>
-</ul>
+          <div class="job">
+            <div class="jobTop">
+              <div class="jobTitle">Amazon Development — SDS Associate</div>
+              <div class="jobWhen">Mar 2022 – Aug 2023</div>
+            </div>
+            <div class="jobOrg">User Support • Access • Troubleshooting</div>
+            <ul class="list">
+              <li>Supported SSO, VPN, Outlook, network, and access issues through tickets/calls/chat.</li>
+              <li>Provided logs + reproduction steps and collaborated with engineering for complex issues.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<p><strong>Amazon Development Center</strong> – SDS Associate (Mar 2022 – Aug 2023)</p>
-<ul>
-  <li>Supported SSO, VPN, Outlook, and access-related issues</li>
-  <li>Provided application support for order and inventory systems</li>
-  <li>Collaborated with engineering teams using logs and reproduction steps</li>
-</ul>
+    <!-- CONTACT -->
+    <div class="panel" id="contact" style="margin-top:16px;">
+      <h2>Contact</h2>
+      <p class="subtitle" style="margin-bottom:10px;">
+        Want to discuss IAM support / production support roles? Reach out:
+      </p>
+      <div class="actions">
+        <a class="btn" href="mailto:aftabsayed49@gmail.com">✉️ Email</a>
+        <a class="btn" href="tel:+918105869911">📞 Call</a>
+        <a class="btn" href="Abdul_Kareem_Resume.pdf" target="_blank" rel="noopener">📄 Resume PDF</a>
+      </div>
+    </div>
 
-
-    <h2>Links</h2>
-    <ul>
-      <li><a href="https://github.com/affy26" target="_blank">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/abdul-kareem-664ba917a" target="_blank">LinkedIn</a></li>
-    </ul>
-
+    <div class="footer">
+      © <span id="y"></span> Abdul Kareem • Built with GitHub Pages
+    </div>
   </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
